@@ -1,10 +1,7 @@
 # PPS-Unidad3Actividad28-AnalisisDinamicoMobSFGenymotion
-Análisis Dinámico de APK con MobSG y Genymotion 
 
-
-# Análisis Dinámico de APK con MobSF y Genymotion: InsecureBankv2
-
-Este repositorio documenta el proceso para realizar un análisis dinámico de la aplicación Android vulnerable **InsecureBankv2** usando **Mobile Security Framework (MobSF)** junto con el emulador **Genymotion**.
+Este contenido se relaciona con la Actividad 28 del resultado de aprendizaje 3, más concretamente con el Análisis Dinámico de APK con MobSG y Genymotion.
+Vamos a realizar un análisis dinámico de la aplicación Android vulnerable **InsecureBankv2** usando **Mobile Security Framework (MobSF)** junto con el emulador **Genymotion**.
 
 ## Índice
 
@@ -52,7 +49,10 @@ Puedes descargar la [Guía de uso de InsecureBankvs desde aquí.](files/Insecure
 
 2. Compila el APK con Android Studio o utiliza una versión precompilada (si está disponible).
   Puedes descargarla desde el repositorio git del desarrollador: <https://github.com/dineshshetty/Android-InsecureBankv2/blob/master/InsecureBankv2.apk>
-> ⚠️ **Nota:** Esta aplicación es intencionadamente insegura. No la instales en dispositivos personales o en entornos de producción.
+> **Importante:** Esta aplicación es intencionadamente insegura. No la instales en dispositivos personales o en entornos de producción.
+
+![image](https://github.com/user-attachments/assets/d3b3b35e-36df-4ae1-9700-c2ddfe0bc51f)
+
 
 ---
 
@@ -80,7 +80,9 @@ docker run -it --rm  -p 8080:8000 --name MobSFopensecurity/mobile-security-frame
 - `-p 8000:8000` Redireccion de puertos. MobSF muestra su web por el puerto 8000. Nosotros lo redirigimos para que podamos acceder a él por el puerto 8000 de nuestra máquina anfitriona. Si quisiéramos verlo por el 8080 de nuestra máquina anfitriona por que estuviera ocupado el 8000, pondríamos `-p 8080:8000.
 - `opensecurity/mobile-security-framework-mobsf:latest` La imagen docker que vamos a utilizar. Es del usuario `opensecurity` de `Hub.Docker.com` 
 - `--name LabMobSF` es el nombre que queremos que tenga el contenedor docker.
-![](images/image1.png)
+
+![image](https://github.com/user-attachments/assets/b25bc28b-54ae-414c-ba40-07dc67b181cc)
+
 
 De esta forma podemos levantar nuestro contenedor `MobSF` para realizar **análisis estáticos de código**. Si lo que deseamos hacer es un **análisis dinámico de código** necesitamos usar otro parámetro:
 - `-e MOBSF_ANALYZER_IDENTIFIER=X.X.X.X:5555` Es el puerto por que se comunicará `ADB` con el emulador de la aplicación Android, donde X.X.X.X es la dirección IP del dispositivo virtual.
@@ -121,7 +123,8 @@ En la pantalla de autenticación usamos el usuario `mobsf` y la contraseña por 
 
 Verás la interfaz web de MobSF, lista para analizar APKs.
 
-![](images/image3.png)
+![image](https://github.com/user-attachments/assets/39a202cc-f136-493c-9a61-d383539e8054)
+
 ---
 
 ## 5. ¿Qué es Genymotion?
@@ -142,7 +145,7 @@ Verás la interfaz web de MobSF, lista para analizar APKs.
 
 2. Descarga la versión para tu sistema operativo. En mi caso en `Linux` he descargado el archivo ` .run`.
 
-![](images/image4.png)
+![image](https://github.com/user-attachments/assets/ff453aa2-01fd-44d2-9481-8a103df7de7a)
 
 3. Instálalo. En mi caso lo he copiado e instalado en la carpeta `/opt`:
 
@@ -151,6 +154,9 @@ sudo cp genymotion-3.9.0-linux_x64.run /opt/
 sudo chmod 755 genymotion-3.9.0-linux_x64.run 
 sudo ./genymotion-3.9.0-linux_x64.run 
 ```
+
+![image](https://github.com/user-attachments/assets/c7a188d5-8f6b-47b6-9e7a-6abedc0e0ae4)
+
 Una vez instalado en tu equipo lánzalo desde el botón de `inicio` de tu SO.
 
 ![](images/image5.png)
@@ -172,13 +178,10 @@ Selecciona `Personal use`. Veremos el siguiente aviso:
 
 Por defecto el hypervisor que utiliza Genymotion es Quemu. El problema es que internamente crea una red NAT y por lo tanto nos puede dificultar la conexión con `MobSF`.
 
-Para configurar nos vamos al apartado `Hypervisor` y seleccionamos el hipervisor `VirtualBox` en vez de `Quemu`.
+Para configurar nos vamos al apartado `Hypervisor` y seleccionamos el hipervisor de `Quemu`.
 
-![](images/image25.png)
+![image](https://github.com/user-attachments/assets/a390b80e-48e6-48d3-8d1e-424367abdc7d)
 
-La aplicación se reiniciará y nos aparece la pantalla de la aplicación
-
-![](images/image27.png)
 
 ---
 
@@ -188,20 +191,19 @@ La aplicación se reiniciará y nos aparece la pantalla de la aplicación
 
 2. Crea una nueva máquina virtual Android (preferiblemente Android 5.0 con x86).
  
-![](images/image8.png)
-
 En los siguientes pasos podemos dejar todas las opciones tal y como están, salvo cambiarle el nombre al dispositivo, la versión de Android a la que nos interese e instalarle el teclado virutal. Aunque la opción “Enable Root Access” aparece desactivada, en principio sí que tendremos acceso de root.
 - Seleccionamos un teléfono básico `Custom Phone`
 
 ![](images/image9.png)
 
 - Cambiamos la versión de Android, seleccionando `Android 5`.
-
-![](images/image10.png)
+- 
+![image](https://github.com/user-attachments/assets/50a728f8-23d4-4fd5-95fc-66be67715543)
 
 - Habilitamos teclado virtual en pantalla.
 
-![](images/image11.png)
+![image](https://github.com/user-attachments/assets/daf94e5c-10fa-460b-a48d-26e3326a10c1)
+
 
 - !!IMPORTANTE¡¡ En la sección de "Hypervisor Options", configuramos la red del dispositivo en modo `Bridge`. Debemos seleccionar también la interfaz que estamos utilizando (wl0 para inalámbrica, en0 para cableada). 
 
@@ -209,11 +211,13 @@ En los siguientes pasos podemos dejar todas las opciones tal y como están, salv
 
 3. Iniciar el dispositivo. Darle al símbolo de `play`.
 
-![](images/image12.png)
+![image](https://github.com/user-attachments/assets/22ce0f7c-49a7-4882-8e5f-7ba508939d31)
+
 
 Nos aparece el dispositivo.
 
-![](images/image13.png)
+![image](https://github.com/user-attachments/assets/1c43900c-7af4-4e18-9632-2bc800190280)
+
 
 ### Comprobar conexión con dispositivo.
 
@@ -224,21 +228,18 @@ Para ver si hay conexión con el dispositivo creado:
 
 ![](images/image28.png)
 
-- Entramos en seccion `WIFI`
+- Entramos en seccion `WIFI` y pulsamos los 3 puntos
 
 ![](images/image29.png)
 
-- Le damos a los tres puntos 
-
-![](images/image30.png)
-
 - Y finalmente en `Advanced` o `Avanzado`
 
-![](images/image31.png)
+![image](https://github.com/user-attachments/assets/ddc7751f-0814-4183-8ff4-6b8ea72589e1)
 
 Ya podremos ver los datos de la conexión: 
 
-![](images/image32.png)
+![image](https://github.com/user-attachments/assets/5bcd536c-1d36-411e-9b1a-97ed7a88919c)
+
 
 2. Probar conexión con ADB.
 
@@ -310,52 +311,18 @@ pip2 install cherrypy
 pip2 install web.py==0.51
 pip2 install web.py
 ```
-![](images/image18.png)
+
+![image](https://github.com/user-attachments/assets/98324b6b-6d06-4883-973f-9bb1deb46dd7)
+
+![image](https://github.com/user-attachments/assets/2bd65d0d-4fa3-4363-9467-1d8695cfb938)
 
 
  E iniciamos el servidor:
 
+Arrastramos el pivaa.apk al móvil o emulador:
 
-```bash
- python2 app.py
-```
+![image](https://github.com/user-attachments/assets/488bb230-2951-4238-a3bf-e24d00546d3e)
 
-![](images/image17.png)
-
----
-  
-
-## 9. Ejecutar InsecureBankv2 en el emulador
-
-1. Instalamos la aplicación en el emulador arrastrando el paquete de la aplicación sobre el emulador:
-
-![](images/image14.png)
-
-2. Finalizada la instalación vemos cómo nos aparece la ventana de login.
-
-![](images/image15.png)
-
-3. Introducimos el usuario y la contraseña y pulsamos botón de `Login`.
-
-> Estos son los usuarios válidos:
-> - dinesh/Dinesh@123$
-> - jack/Jack@123$
-
-![](images/image20.png)
-
-4. Introducimos dirección Ip del Servidor.
-
-Si lo hemos creado en nuestro equipo tan sólo tenemos que ver la ip de nuestro equipo y ponerla. Por defecto usamos el puerto 8888.
-
-![](images/image21.png)
-
-Después de darle al botón de `Submit` accedemos a la aplicación:
-
-![](images/image22.png)
-
-En cualquier momento podemos cambiar los datos del servidor dándole a los tres puntos, en el apartado de `Preferencias`
-
-![](images/image36.png)
 
 ---
 ## 10. Poner en marcha el laboratorio
@@ -383,9 +350,14 @@ En este caso es la 192.168.1.137. ¡¡¡OJO¡¡ que esta ip no tiene que ser sie
 docker run -it --rm -e MOBSF_ANALYZER_IDENTIFIER=192.168.1.137:5555 -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest
 ```
 
+![image](https://github.com/user-attachments/assets/4717f8a1-1612-4c61-bda9-c931a2878052)
+
 1. Accede a `MobSF`
 
 <http://localhost:8080/>
+
+![image](https://github.com/user-attachments/assets/9165c2ce-2f3b-4339-8e98-1f7b770bb1d1)
+
 
 ---
 ## 11. Análisis dinámico de la aplicación
@@ -400,29 +372,28 @@ docker run -it --rm -e MOBSF_ANALYZER_IDENTIFIER=192.168.1.137:5555 -p 8000:8000
  
 3. Selecciona la opción **Dynamic Analyzer**.
 
-![](images/image37.png)
+![image](https://github.com/user-attachments/assets/033ee6f0-c838-4d3e-945a-47715df42892)
+
 
 3. Asegúrate de que MobSF detecta el dispositivo emulado vía ADB.
 
 4. Carga el APK de InsecureBankv2.
 
 Vemos como esta conectado correctamente con nuestro dispositivo virtual.
+![image](https://github.com/user-attachments/assets/6310ad37-d08a-4587-8b4b-a4020ccd790c)
 
-![](images/image38.png)
 
 1. Vemos las aplicaciones detectadas por el analizador dinámico.
 Como nos interesa MobSF, pulsamos en ella en `Iniciar Análisis dinámico` 
 
-![](images/image39.png)
+![image](https://github.com/user-attachments/assets/1eeb5462-adce-4c1c-b147-4b2d32465175)
+
 
 5. Sigue las instrucciones para iniciar el análisis dinámico.
 
 > MobSF lanzará la app en el emulador y empezará a registrar comportamiento, tráfico, uso de permisos, etc.
 
-![](images/image41.png)
-
--
-
+![image](https://github.com/user-attachments/assets/50c96928-dc1f-4c41-b687-ebcc412ae446)
 
 --
 
